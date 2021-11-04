@@ -1,5 +1,6 @@
 import {Text} from 'react-native';
+import React, {FC} from 'react';
 
 export const SignUpScreen = () => {
-  return <Text>InitialScreen</Text>;
+  return <Text>xx</Text>;
 };

@@ -10,26 +10,8 @@ import {SignUpScreen} from './screens/SignUp';
 import {SignInScreen} from './screens/SignIn';
 import {NameScreen} from './screens/Name';
 import {DateScreen} from './screens/Date';
-const Stack = createNativeStackNavigator();
-
-export default function App() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name={Screen.InitialScreen} component={InitialScreen} />
-        <Stack.Screen name={Screen.DateScreen} component={DateScreen} />
-        <Stack.Screen name={Screen.NameScreen} component={NameScreen} />
-        <Stack.Screen name={Screen.SignInScreen} component={SignInScreen} />
-        <Stack.Screen name={Screen.SignUpScreen} component={SignUpScreen} />
-        <Stack.Screen name={Screen.SuccessScreen} component={SuccessScreen} />
-        <Stack.Screen
-          name={Screen.WorkoutFrequencyScreen}
-          component={WorkoutFrequencyScreen}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-}
+import {Provider as PaperProvider, DefaultTheme} from 'react-native-paper';
+import {palette, theme} from './theme';
 
 export enum Screen {
   DateScreen = 'DateScreen',
@@ -39,4 +21,54 @@ export enum Screen {
   SignUpScreen = 'SignUpScreen',
   SuccessScreen = 'SuccessScreen',
   WorkoutFrequencyScreen = 'WorkoutFrequencyScreen',
+}
+
+export type RootStackParamList = {
+  [Screen.DateScreen]: undefined;
+  [Screen.InitialScreen]: undefined;
+  [Screen.NameScreen]: undefined;
+  [Screen.SignInScreen]: undefined;
+  [Screen.SignUpScreen]: undefined;
+  [Screen.SuccessScreen]: undefined;
+  [Screen.WorkoutFrequencyScreen]: undefined;
+};
+declare global {
+  namespace ReactNavigation {
+    interface RootParamList extends RootStackParamList {}
+  }
+}
+
+const RootStack = createNativeStackNavigator<RootStackParamList>();
+
+export default function App() {
+  return (
+    <PaperProvider theme={theme}>
+      <NavigationContainer>
+        <RootStack.Navigator screenOptions={{headerShown: false}}>
+          <RootStack.Screen
+            name={Screen.InitialScreen}
+            component={InitialScreen}
+          />
+          <RootStack.Screen name={Screen.DateScreen} component={DateScreen} />
+          <RootStack.Screen name={Screen.NameScreen} component={NameScreen} />
+          <RootStack.Screen
+            name={Screen.SignInScreen}
+            component={SignInScreen}
+          />
+          <RootStack.Screen
+            name={Screen.SignUpScreen}
+            component={SignUpScreen}
+          />
+          <RootStack.Screen
+            name={Screen.SuccessScreen}
+            component={SuccessScreen}
+          />
+          <RootStack.Screen
+            name={Screen.WorkoutFrequencyScreen}
+            component={WorkoutFrequencyScreen}
+          />
+        </RootStack.Navigator>
+      </NavigationContainer>
+    </PaperProvider>
+  );
 }
