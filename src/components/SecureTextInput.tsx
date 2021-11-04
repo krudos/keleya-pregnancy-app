@@ -11,14 +11,23 @@ export const SecureTextInput = forwardRef<typeof TextInput, Props>(
       [setShowText, showText],
     );
     const icon = showText ? 'eye' : 'eye-slash';
+
     return (
       <TextInput
+        // @ts-ignore
         ref={ref}
         {...props}
         secureTextEntry={showText}
-        right={props => (
-          <TextInput.Icon name={icon} onPress={toggleTextSecurity} {...props} />
-        )}>
+        right={
+          // @ts-ignore
+          props => (
+            <TextInput.Icon
+              name={icon}
+              onPress={toggleTextSecurity}
+              {...props}
+            />
+          )
+        }>
         {props.children}
       </TextInput>
     );

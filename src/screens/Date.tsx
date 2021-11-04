@@ -82,9 +82,6 @@ export const DateScreen: FC<Props> = ({route}) => {
                       startDate: startDate, // optional
                       endDate: endDate, // optional
                     }}
-                    // saveLabel="Save" // optional
-                    // label="Select date" // optional
-                    // animationType="slide" // optional, default is 'slide' on ios/android and 'none' on web
                   />
                 </View>
               </View>

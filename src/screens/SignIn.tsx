@@ -8,6 +8,7 @@ import {Formik} from 'formik';
 import {Screen} from '../App';
 import {useNavigation} from '@react-navigation/native';
 import {SecureTextInput} from '../components/SecureTextInput';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 export const SignInScreen = () => {
   const navigation = useNavigation();
@@ -25,7 +26,7 @@ export const SignInScreen = () => {
         validationSchema={validationSchema}>
         {({isSubmitting, values, handleChange, isValid, handleSubmit}) => {
           return (
-            <>
+            <KeyboardAwareScrollView>
               <View style={styles.container}>
                 <Image
                   source={require('../assets/authentication-background-image.jpg')}
@@ -44,6 +45,7 @@ export const SignInScreen = () => {
                     onChangeText={handleChange('email')}
                   />
                   <SecureTextInput
+                    // @ts-ignore
                     placeholder="Enter a password"
                     secureTextEntry
                     style={styles.input}
@@ -67,7 +69,7 @@ export const SignInScreen = () => {
                   <Text style={styles.buttonTextSignUp}>Log in</Text>
                 </Button>
               </SafeAreaView>
-            </>
+            </KeyboardAwareScrollView>
           );
         }}
       </Formik>

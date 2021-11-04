@@ -7,6 +7,7 @@ import * as yup from 'yup';
 import {Formik} from 'formik';
 import {Screen} from '../App';
 import {useNavigation} from '@react-navigation/native';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 export const NameScreen = () => {
   const navigation = useNavigation();
@@ -28,7 +29,7 @@ export const NameScreen = () => {
         {({isSubmitting, values, handleChange, isValid, handleSubmit}) => {
           return (
             <>
-              <View style={styles.container}>
+              <KeyboardAwareScrollView style={styles.container}>
                 <Image
                   source={require('../assets/couch_smile.jpg')}
                   resizeMode="contain"
@@ -47,7 +48,7 @@ export const NameScreen = () => {
                     onChangeText={handleChange('name')}
                   />
                 </View>
-              </View>
+              </KeyboardAwareScrollView>
               <SafeAreaView>
                 <Button
                   disabled={!isValid || isSubmitting}

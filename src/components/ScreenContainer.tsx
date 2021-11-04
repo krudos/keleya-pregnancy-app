@@ -6,7 +6,6 @@ import {
   ViewStyle,
 } from 'react-native';
 import React, {FC} from 'react';
-import {palette} from '../theme';
 
 interface ScreenContainerProps {
   source: ImageSourcePropType;

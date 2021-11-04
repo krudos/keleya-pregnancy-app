@@ -12,6 +12,7 @@ import {NameScreen} from './screens/Name';
 import {DateScreen} from './screens/Date';
 import {Provider as PaperProvider} from 'react-native-paper';
 import {theme} from './theme';
+// @ts-ignore
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 export enum Screen {
   DateScreen = 'DateScreen',
