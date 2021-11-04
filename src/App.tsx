@@ -10,9 +10,9 @@ import {SignUpScreen} from './screens/SignUp';
 import {SignInScreen} from './screens/SignIn';
 import {NameScreen} from './screens/Name';
 import {DateScreen} from './screens/Date';
-import {Provider as PaperProvider, DefaultTheme} from 'react-native-paper';
-import {palette, theme} from './theme';
-
+import {Provider as PaperProvider} from 'react-native-paper';
+import {theme} from './theme';
+import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 export enum Screen {
   DateScreen = 'DateScreen',
   InitialScreen = 'InitialScreen',
@@ -39,29 +39,36 @@ declare global {
 }
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
-
 export default function App() {
   return (
-    <PaperProvider theme={theme}>
+    <PaperProvider
+      theme={theme}
+      settings={{
+        icon: props => <AwesomeIcon {...props} />,
+      }}>
       <NavigationContainer>
-        <RootStack.Navigator screenOptions={{headerShown: false}}>
+        <RootStack.Navigator>
           <RootStack.Screen
             name={Screen.InitialScreen}
             component={InitialScreen}
+            options={{headerShown: false}}
           />
           <RootStack.Screen name={Screen.DateScreen} component={DateScreen} />
           <RootStack.Screen name={Screen.NameScreen} component={NameScreen} />
           <RootStack.Screen
             name={Screen.SignInScreen}
             component={SignInScreen}
+            options={{title: '', headerShown: false}}
           />
           <RootStack.Screen
             name={Screen.SignUpScreen}
             component={SignUpScreen}
+            options={{title: '', headerShown: false}}
           />
           <RootStack.Screen
             name={Screen.SuccessScreen}
             component={SuccessScreen}
+            options={{title: '', headerShown: false}}
           />
           <RootStack.Screen
             name={Screen.WorkoutFrequencyScreen}

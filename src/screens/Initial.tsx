@@ -1,67 +1,59 @@
 import React, {FC} from 'react';
 
-import {
-  Dimensions,
-  Image,
-  ImageBackground,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Image, StyleSheet, Text, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {useCallback} from 'react';
 import {RootStackParamList, Screen} from '../App';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {palette} from '../theme';
 
-import Icon from 'react-native-vector-icons/FontAwesome';
 import {Button} from 'react-native-paper';
-const windowWidth = Dimensions.get('window').width;
+import {ScreenContainer} from '../components/ScreenContainer';
 
 type Props = NativeStackScreenProps<RootStackParamList, Screen.InitialScreen>;
 export const InitialScreen: FC<Props> = ({}) => {
+  const {showSignUp, showSignIn} = useInitialScreen();
+  return (
+    <ScreenContainer source={require('../assets/first-intro-image.png')}>
+      <View style={styles.topContainer}>
+        <Image
+          source={require('../assets/keleya-logo.png')}
+          resizeMode="contain"
+          style={styles.image}
+        />
+        <Text style={styles.title}>For a fit and relaxed pregnancy</Text>
+      </View>
+
+      <View style={styles.bottomContainer}>
+        <Button
+          onPress={showSignUp}
+          mode="contained"
+          uppercase={false}
+          style={styles.button}>
+          <Text style={styles.buttonTextSignUp}>Get started</Text>
+        </Button>
+        <Button onPress={showSignIn} uppercase={false} style={styles.button}>
+          <Text style={styles.buttonTextLogIn}>Or login</Text>
+        </Button>
+      </View>
+    </ScreenContainer>
+  );
+};
+
+const useInitialScreen = () => {
   const navigation = useNavigation();
 
   const showSignIn = useCallback(() => {
-    navigation.navigate(Screen.DateScreen);
+    // @ts-ignore
+    navigation.navigate(Screen.SignInScreen);
   }, [navigation]);
 
   const showSignUp = useCallback(() => {
+    // @ts-ignore
     navigation.navigate(Screen.SignUpScreen);
   }, [navigation]);
 
-  return (
-    <ImageBackground
-      source={require('../assets/first-intro-image.png')}
-      resizeMode="cover"
-      style={styles.background}>
-      <SafeAreaView style={styles.container}>
-        <View style={styles.topContainer}>
-          <Image
-            source={require('../assets/keleya-logo.png')}
-            resizeMode="contain"
-            style={styles.image}
-          />
-          <Text style={styles.title}>For a fit and relaxed pregnancy</Text>
-        </View>
-
-        <View style={styles.bottomContainer}>
-          <Button
-            onPress={showSignUp}
-            mode="contained"
-            uppercase={false}
-            style={styles.button}>
-            <Text style={styles.buttonTextSignUp}>Get started</Text>
-          </Button>
-          <Button onPress={showSignIn} uppercase={false} style={styles.button}>
-            <Text style={styles.buttonTextLogIn}>Or login</Text>
-          </Button>
-        </View>
-      </SafeAreaView>
-    </ImageBackground>
-  );
+  return {showSignIn, showSignUp};
 };
 
 const styles = StyleSheet.create({
