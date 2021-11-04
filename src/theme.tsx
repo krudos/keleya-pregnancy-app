@@ -18,11 +18,11 @@ export const theme = {
     placeholder: palette.WARM_GREY,
     text: palette.GREYISH_BROWN,
     background: palette.WHITE,
-    surface: palette.GREYISH_BROWN,
+    /* surface: palette.GREYISH_BROWN,
     disabled: palette.GREYISH_BROWN,
     backdrop: palette.GREYISH_BROWN,
     onSurface: palette.GREYISH_BROWN,
-    notification: palette.GREYISH_BROWN,
+    notification: palette.GREYISH_BROWN,*/
   },
   palette,
 };

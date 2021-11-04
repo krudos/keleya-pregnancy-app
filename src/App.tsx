@@ -24,7 +24,7 @@ export enum Screen {
 }
 
 export type RootStackParamList = {
-  [Screen.DateScreen]: undefined;
+  [Screen.DateScreen]: {name: string};
   [Screen.InitialScreen]: undefined;
   [Screen.NameScreen]: undefined;
   [Screen.SignInScreen]: undefined;
@@ -47,28 +47,24 @@ export default function App() {
         icon: props => <AwesomeIcon {...props} />,
       }}>
       <NavigationContainer>
-        <RootStack.Navigator>
+        <RootStack.Navigator screenOptions={{headerShown: false}}>
           <RootStack.Screen
             name={Screen.InitialScreen}
             component={InitialScreen}
-            options={{headerShown: false}}
           />
           <RootStack.Screen name={Screen.DateScreen} component={DateScreen} />
           <RootStack.Screen name={Screen.NameScreen} component={NameScreen} />
           <RootStack.Screen
             name={Screen.SignInScreen}
             component={SignInScreen}
-            options={{title: '', headerShown: false}}
           />
           <RootStack.Screen
             name={Screen.SignUpScreen}
             component={SignUpScreen}
-            options={{title: '', headerShown: false}}
           />
           <RootStack.Screen
             name={Screen.SuccessScreen}
             component={SuccessScreen}
-            options={{title: '', headerShown: false}}
           />
           <RootStack.Screen
             name={Screen.WorkoutFrequencyScreen}
